@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./styles/basic.css"/>
+    <title>Zombie Dice</title>
+  </head>
+
+  <body>
+
+    <div class="game-intro">
+      <img src="images/LogoZDice.png" alt='Logo-Zombie'  />
+      
+      <h1>instrucciones</h1>
+
+      <p>1. Tira los dados, si no quieres morir! :D</p>
+      <p>2. Resuelve tu tirada. </p>
+      <p>Cerebro: Zombie Ataca <br> Hueyas: Tu decides: o huyes o atacas <br>Puch: Atacas al zombie </p>
+
+
+      <button id="start-button">StartGame</button>
+
+  
+    </div>
+
+
+    <div id="game-board">
+
+        <canvas id="canvas" width="1425" height="900" ctx.strokeStyle= "red"></canvas>
+  
+    </div>
+  
+    <script type="text/javascript" src="js/Dice.js"></script>
+    <script type="text/javascript" src="js/Zombies.js"></script>
+    <script type="text/javascript" src="js/Player.js"></script>
+    <script type="text/javascript" src="js/background.js"></script>
+    <script type="text/javascript" src="js/board.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+      
+    
+  </body>
+
+</html>

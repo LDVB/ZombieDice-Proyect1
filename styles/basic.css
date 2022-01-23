@@ -1,0 +1,33 @@
+*{
+
+    margin: 0;
+    padding: 0;
+
+}
+
+h1{
+
+
+
+}
+
+.game-intro {
+
+    float: left;
+    padding: 10px;
+    margin: 30px;
+
+}
+
+.game-intro p {
+
+    font-size: 18px;
+    font-family: "Verdana"
+}
+
+#game-board {
+    
+    padding: 20px 0px;
+}
+
+  
