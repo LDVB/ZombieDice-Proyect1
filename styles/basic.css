@@ -1,14 +1,16 @@
 *{
-
     margin: 0;
     padding: 0;
-
 }
 
+
+
 h1{
-
-
-
+    padding-top: 10px;
+    text-align: center;
+    font-size: 55px;
+    font-family: 'Special Elite', cursive;
+    color: rgb(0, 0, 0);
 }
 
 .game-intro {
@@ -21,14 +23,28 @@ h1{
 
 .game-intro p {
 
-    font-size: 18px;
-    font-family: "Verdana"
+    font-size: 25px;
+    font-family: 'Special Elite', cursive;
 }
 
 #game-board {
     
     padding: 20px 0px;
 }
+
+body button {
+    font-size: 55px;
+    font-family: 'Creepster', cursive;
+    background: linear-gradient(0deg, rgba(1,8,14,1) 42%, rgba(215,11,11,1) 100%);   
+    color: #fff;
+    padding: 20px 130px;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 5px;
+    margin-bottom: 22px;
+    margin-left: 19px;
+    margin-top: 45px;
+  }
 
 canvas {
     border: 2px solid rgb(0, 0, 0);
