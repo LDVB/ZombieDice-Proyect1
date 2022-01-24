@@ -1,29 +1,27 @@
 
 const drawingApocalipsys = {
-
     appName: 'Zombie Dice',
     author: 'Laura Del Valle && Guillermo Rodriguez',
     version: '1.0.0',
     license: undefined,
     gameSize: { w: undefined, h: undefined },
     ctx: undefined,
-
+    player: undefined,
+    zombies: undefined,
     init(){
-
         this.setContext()
         this.setSize()
-        this.createPlayer ()
-        this.createZombies ()
+        this.drawBoard()
+        this.createPlayer()
+        this.createZombies()
         this.drawAll()
-    
-
     },
-
-    setContext(){
+    setContext() {
 
         this.ctx = document.querySelector('#canvas').getContext('2d')
-        
+
     },
+
 
     setSize(){
 
@@ -39,47 +37,64 @@ const drawingApocalipsys = {
 
     },
 
+    ///// DRAW BOARD
+
+    drawBoard() {
+
+        this.drawlowerBoard()
+        this.drawUpperBoard()
+        this.addZombieToken()
+                           
+    },
+
+    drawlowerBoard() {
+
+        this.ctx.fillStyle = '#B8860B'
+        this.ctx.fillRect(0, 500, this.gameSize.w , this.gameSize.h)
+       
+    },
+
+    drawUpperBoard(){
+
+        this.ctx.fillStyle = '#A9A9A9'
+        this.ctx.fillRect(0, 0, this.gameSize.w , this.gameSize.h -400)
+       
+
+    },
+
+    ///// DRAW BOARD ELEMENTS  
+
+    addZombieToken(){
+        
+
+
+
+    },
+
+    ///// DRAW PLAYERS AND VILLAINS
+
+
     createPlayer(){
 
-        this.player.push (
-
-            new Player (this.ctx, 0, 70, 100, 5, this.gameSize)
-
-        )
-
+        this.player = new Player (this.ctx, 100, 100, 100, 100)
 
     },
 
     createZombies(){
 
-        this.zombies.push (
-
-            new Zombie (this.ctx, 0, 170, 100, 5, this.gameSize)
-
-        )
+        this.zombies = new Zombies (this.ctx, 100, 100, 100, 100)
 
     },
 
 
+    ///// DRAW AND CLEAR
+
+
     drawAll (){
 
-        setInterval(() => {
-
-          this.clearScreen()
-          this.player.forEach(element => {
-
-              element.move()
-              element.draw()
-                
-           });
-
-           this.zombies.forEach(element => {
-
-               element.draw()
-                
-           });
-    
-       }, 40);
+        this.ctx.clearRect(0, 0,this.gameSize.w, this.gameSize.h) 
+        this.drawBoard()
+        this.Player.draw()
 
    },
 
@@ -89,7 +104,9 @@ const drawingApocalipsys = {
 
    }
 
+   ///// MOVEMENT
 
- ///faltan los comando de movimiento
+
+    
 
 }

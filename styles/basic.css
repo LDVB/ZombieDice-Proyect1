@@ -30,4 +30,7 @@ h1{
     padding: 20px 0px;
 }
 
+canvas {
+    border: 2px solid rgb(0, 0, 0);
+  }
   
