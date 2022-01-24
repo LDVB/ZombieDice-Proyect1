@@ -7,14 +7,16 @@ const drawingApocalipsys = {
     gameSize: { w: undefined, h: undefined },
     ctx: undefined,
     player: undefined,
-    zombies: undefined,
+    zombie: undefined,
     init(){
         this.setContext()
         this.setSize()
         this.drawBoard()
         this.createPlayer()
-        this.createZombies()
+        this.createZombie()
         this.drawAll()
+        this.allDiceResult()
+
     },
     setContext() {
 
@@ -80,9 +82,9 @@ const drawingApocalipsys = {
 
     },
 
-    createZombies(){
+    createZombie(){
 
-        this.zombies = new Zombies (this.ctx, 100, 100, 100, 100)
+        this.zombie = new Zombie (this.ctx, 100, 100, 100, 100)
 
     },
 
@@ -94,7 +96,8 @@ const drawingApocalipsys = {
 
         this.ctx.clearRect(0, 0,this.gameSize.w, this.gameSize.h) 
         this.drawBoard()
-        this.Player.draw()
+        this.player.draw()
+        this.zombie.draw()
 
    },
 
@@ -102,9 +105,15 @@ const drawingApocalipsys = {
 
         this.ctx.clearRect(0, 0 , this.gameSize.w, this.gameSize.h)
 
-   }
+   },
 
-   ///// MOVEMENT
+
+    //// ALL DICE MOVEMENTS    
+
+
+
+
+   ///// MOVEMENT KEYBOARD      
 
 
     

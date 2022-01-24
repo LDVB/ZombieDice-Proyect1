@@ -1,18 +1,17 @@
 class Player {
     constructor(ctx, posX, posY, width) {
         this.ctx = ctx
-        this.PlayerPos = { x: 250, y: 450 }
-        this.PlayerSize = { w: width * 20, h: width * .50 }
-        this.PlayerImage = undefined
+        this.Pos = { x: 250, y: 450 }
+        this.Size = { w: width * 20, h: width * .50 }
+        this.Image = undefined
         this.init()
-        this.drawPlayer()
     }
     init() {
 
 
 
     }
-    drawPlayer() {
+    draw() {
 
         this.ctx.fillStyle = 'red'
         this.ctx.fillRect(300, 400, 100, 100)
@@ -26,4 +25,6 @@ class Player {
         
         this.PlayerPos.x += 20
     }
+
+    //faltan las vidas
 }

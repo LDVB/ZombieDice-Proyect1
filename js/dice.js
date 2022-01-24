@@ -1,42 +1,28 @@
+class dice {
+    constructor(ctx, posX, posY, width) {
+        this.ctx = ctx
+        this.Pos = { x: 250, y: 450 }
+        this.Size = { w: width * 20, h: width * .50 }
+        this.Image = undefined
+        this.init()
+    }
+    init() {
 
-// Dice Array
-
-const allDice = []
-
-for (let i=0; i< 3; i++) {
-
-    let result = Math.floor(Math.random() * (13 - 1 + 1) + 1)
-    let allDiceValue = greenValue + yellowValue + redValue
-    return allDiceValue
 
 
+    }
+    draw() {
+
+        this.ctx.fillStyle = 'red'
+        this.ctx.fillRect(300, 400, 100, 100)
+
+    }
+    moveLeft() {
+
+        this.PlayerPos.x -= 50
+    }
+    moveRight() {
+        
+        this.PlayerPos.x += 20
+    }
 }
-
-//greenDice
-const greenDice = ['pasos', 'pasos', 'pasos', 'mordisco', 'disparo', 'disparo']
-for (let i = 0; i < 6; i++) {
-  let result = Math.floor(Math.random() * (6 - 1 + 1) + 1)
-  let greenValue = greenDice[result]
-  allDice.push(greenValue)
-}
-
-//yellowDice
-const yellowDice = ['pasos', 'pasos', 'mordisco', 'mordisco', 'disparo', 'disparo']
-for (let i = 0; i < 4; i++) {
-  let result = Math.floor(Math.random() * (4 - 1 + 1) + 1)
-  let yellowValue = yellowDice[result]
-  allDice.push(yellowValue)
-}
-
-//redDice
-const redDice = ['mordisco', 'mordisco', 'pasos', 'mordisco', 'mordisco', 'disparo']
-for (let i = 0; i < 3; i++) {
-  let result = Math.floor(Math.random() * (3 - 1 + 1) + 1)
-  let redValue = redDice[result]
-  allDice.push(redValue)
-}
-
-
-
-
-
