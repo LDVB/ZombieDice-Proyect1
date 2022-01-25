@@ -23,7 +23,7 @@ h1{
 
 .game-intro p {
 
-    font-size: 25px;
+    font-size: 20px;
     font-family: 'Special Elite', cursive;
 }
 
@@ -33,7 +33,7 @@ h1{
 }
 
 body button {
-    font-size: 55px;
+    font-size: 50px;
     font-family: 'Creepster', cursive;
     background: linear-gradient(0deg, rgba(1,8,14,1) 42%, rgba(215,11,11,1) 100%);   
     color: #fff;
@@ -43,7 +43,7 @@ body button {
     border-radius: 5px;
     margin-bottom: 22px;
     margin-left: 19px;
-    margin-top: 45px;
+    margin-top: 10px;
   }
 
 canvas {

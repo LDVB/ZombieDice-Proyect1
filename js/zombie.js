@@ -17,6 +17,8 @@ class Zombie {
 
     //faltan las vidas
 
+    //faltan 
+
 
 
 

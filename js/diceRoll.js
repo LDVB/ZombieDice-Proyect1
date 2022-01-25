@@ -1,4 +1,6 @@
 
+//solo la logica de los dados
+
 // Dice Array
 
 const allDice = []
@@ -56,7 +58,7 @@ for (let i=0; i<3; i++) {
 
 }
 
-console.log(diceRoll)
+
 
 
 

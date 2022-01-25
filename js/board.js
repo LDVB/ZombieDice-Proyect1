@@ -46,19 +46,20 @@ const drawingApocalipsys = {
         this.drawlowerBoard()
         this.drawUpperBoard()
         this.addZombieToken()
+        this.addPlayerToken()
                            
     },
 
     drawlowerBoard() {
 
-        this.ctx.fillStyle = '#B8860B'
+        this.ctx.fillStyle = '#504949'
         this.ctx.fillRect(0, 500, this.gameSize.w , this.gameSize.h)
        
     },
 
     drawUpperBoard(){
 
-        this.ctx.fillStyle = '#A9A9A9'
+        this.ctx.fillStyle = '#B8860B'
         this.ctx.fillRect(0, 0, this.gameSize.w , this.gameSize.h -400)
        
 
@@ -67,8 +68,19 @@ const drawingApocalipsys = {
     ///// DRAW BOARD ELEMENTS  
 
     addZombieToken(){
-        
+        var img = new Image()
+        img.src = "images/tokenZombie.png"
+        ctx.drawImage(img, 0, 0)
 
+    },
+
+    addPlayerToken(){
+
+
+
+    },
+
+    addComandImage(){
 
 
     },
