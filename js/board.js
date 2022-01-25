@@ -8,6 +8,7 @@ const drawingApocalipsys = {
     ctx: undefined,
     player: undefined,
     zombie: undefined,
+    diceRoll: [],
     init(){
         this.setContext()
         this.setSize()
@@ -15,7 +16,10 @@ const drawingApocalipsys = {
         this.createPlayer()
         this.createZombie()
         this.drawAll()
-        this.allDiceResult()
+        this.diceRoll = new Rolldice(this.ctx)
+        this.diceRoll.getDiceImage()
+        this.diceRoll.draw()
+        
 
     },
     setContext() {
@@ -68,9 +72,9 @@ const drawingApocalipsys = {
     ///// DRAW BOARD ELEMENTS  
 
     addZombieToken(){
-        var img = new Image()
+        const img = new Image()
         img.src = "images/tokenZombie.png"
-        ctx.drawImage(img, 0, 0)
+        this.ctx.drawImage(img, 0, 0)
 
     },
 
@@ -120,9 +124,33 @@ const drawingApocalipsys = {
    },
 
 
-    //// ALL DICE MOVEMENTS    
+    //// CONTROL GAME    
 
+    controlGameActions(actionsArray) {
 
+     actionsArray.forEach((action) => {
+         switch (action) {
+             case action === "pasos":
+                 this.player
+                 //acciones player se mueve/zombie avanza hacia el jugador
+                 this.
+                 break;
+
+             case diceRoll.includes ("mordisco"):
+                 //acciones Player pierde una vida si esta cerca del zombie (distancia de dos pasos)
+                 //imagen de dado mostrada en pantalla   
+                 break;
+
+             case diceRoll.includes ("disparo"):
+                 //acciones zombie pierde una vida si está cerca del player (distancia de tres pasos)
+                 //imagen de dado mostrada en pantalla
+                 break;
+             default:
+                console.log('Action not managed')
+            }
+        })
+
+    }
 
 
    ///// MOVEMENT KEYBOARD      
