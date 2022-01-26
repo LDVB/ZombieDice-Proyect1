@@ -20,12 +20,13 @@ class RollDice {
         this.totalRollResult = []
         this.finalResult = []
         this.diceImages = []
-        
 
     }
 
 
     getTotalRollResult() {
+
+        this.totalRollResult = []
 
         for (let i = 0; i < this.greenDice.rollNumber; i++) {
             let result = Math.floor(Math.random() * this.greenDice.options.length)
@@ -52,6 +53,8 @@ class RollDice {
 
     getFinalResult() {
 
+        this.finalResult = []
+
         for (let i = 0; i < this.finalResultNumber; i++) {
             let result = Math.floor(Math.random() * this.totalRollResult.length)
             let chosen = this.totalRollResult[result]
@@ -65,19 +68,21 @@ class RollDice {
     
     getDiceImage() {
 
+        this.diceImages = []
+
         this.finalResult.forEach((elm) => {
             const image = new Image()
             switch (elm) {
                 case "pasos":
-                    image.src = "images/LogoZDice.png"  //TODO
+                    image.src = "images/greenDiceWalk.png"  
                     break;
                     
                 case "disparo":
-                    image.src = "images/LogoZDice.png"  //TODO
+                    image.src = "images/yellow-dice.jpg"  
                     break;
                     
                 case "mordisco":
-                    image.src = "images/caca.png" //TODO
+                    image.src = "images/redDiceBite.png"
                     break;
                 default:
                     console.log('Action not managed')
@@ -105,10 +110,14 @@ class RollDice {
         this.draw()
 
     }
+
+
     
-    // crear la intancia de rolldice en un metodo createroldice y lo llamamos en init (podemos crear el createall)
-    // queremos sacar la tirada cuando el jugador le de al boton
-    // entonces el metodo que hace eso debe ser llamado en ese  momento
-    // y ahi se dibujaran los dados (que ya lo hemos hecho, se supone) y luego habra que gestionar lo que pasa segun la tirada que sale de los dados
+
+    
+    // :) crear la intancia de rolldice en un metodo createroldice y lo llamamos en init (podemos crear el createall)
+    // :) queremos sacar la tirada cuando el jugador le de al boton
+    // :) entonces el metodo que hace eso debe ser llamado en ese  momento
+    // :) y ahi se dibujaran los dados (que ya lo hemos hecho, se supone) y luego habra que gestionar lo que pasa segun la tirada que sale de los dados
 
 }

@@ -8,17 +8,19 @@ const drawingApocalipsys = {
     ctx: undefined,
     player: undefined,
     zombie: undefined,
-    //Rolldice: [], // antes diceRoll
+        /*
+    keys: {
+        UP: 38,
+        DOWN: 40,
+        LEFT: 37,
+        RIGHT: 39
+    },*/
 
     init(){
         this.setContext()
         this.setSize()
         this.drawBoard()
-        this.createPlayer()
-        this.createZombie()
-        this.rollDice = new RollDice(this.ctx) // antes diceRoll
-        //this.rollDice.getDiceImage() // antes diceRoll
-        //this.rollDice.draw() // antes diceRoll
+        this.createAll()
         this.drawAll()
         this.start() 
         this.setEventHandlers()      
@@ -49,6 +51,13 @@ const drawingApocalipsys = {
 
     ///// DRAW AND CLEAR
 
+    createAll() {
+
+        this.createPlayer()
+        this.createZombie()
+        this.createRollDice()
+
+    },
 
     drawAll (){
 
@@ -74,6 +83,7 @@ const drawingApocalipsys = {
         this.drawUpperBoard()
         this.drawZombieToken()
         this.drawPlayerToken()
+        this.drawComandImage()
                            
     },
 
@@ -91,12 +101,12 @@ const drawingApocalipsys = {
        
     },
 
-    ///// DRAW BOARD ELEMENTS  
+    ///// BOARD ELEMENTS  
 
     drawZombieToken(){
         const zombieToken = new Image()
         zombieToken.src = "images/tokenZombie-PhotoRoom.png"
-        this.ctx.drawImage(zombieToken, 300, 0, 200, 200)
+        this.ctx.drawImage(zombieToken, 10, 530, 300, 300)
         
     },
 
@@ -104,7 +114,7 @@ const drawingApocalipsys = {
 
         const playerToken = new Image()
         playerToken.src = "images/tokenPlayer-PhotoRoom.png"
-        this.ctx.drawImage (playerToken,0, 300, 200, 200)
+        this.ctx.drawImage (playerToken,1090, 560, 360, 360)
         
 
     },
@@ -113,11 +123,17 @@ const drawingApocalipsys = {
 
         const comandImage = new Image()
         comandImage.src = "images/controles.png"
-        comandImage.onload = () => this.ctx.drawImage(comandImage, 0, 0, 200, 200)
+        this.ctx.drawImage(comandImage, 760, 555, 270, 270)
 
     },
 
     ///// DRAW PLAYERS AND VILLAINS
+
+    createRollDice(){
+
+        this.rollDice = new RollDice(this.ctx) 
+        
+    },
 
     createPlayer(){
 
@@ -131,8 +147,7 @@ const drawingApocalipsys = {
 
     },
 
-
-
+   
     //// CONTROL GAME    
 
     controlGameActions(actionsArray) {
@@ -162,19 +177,50 @@ const drawingApocalipsys = {
     },
 
 
-   ///// MOVEMENT KEYBOARD    
+   ///// MOVEMENT KEYBOARD  
 
    setEventHandlers() {
-    document.addEventListener('keydown', event => {
-        const { key } = event
-        key === 'ArrowRight' ? this.player.moveRight() : null
-        key === 'ArrowUp' ? this.dice.moveLeft() : null
-        key === 'ArrowDown' ? this.rollDice.moveRight() : null
-        key === 'ArrowLeft' ? this.player.moveLeft() : null
-    })
 
-}
+        document.addEventListener('keydown', event => {
+            const { key } = event
+            key === 'ArrowRight' ? this.player.moveRight(): null
+            key === 'ArrowDown' ? this.rollDice.getRollDice(): null
+            key === 'ArrowLeft' ? this.player.moveLeft() : null
+        })
+    }    
+
+    /*
+    setEventHandlers() {
+
+        document.addEventListener ('keydown', event => {
+    
+            switch (event) {
+
+                case this.keys.LEFT:
+                    this.player.moveLeft()            
+                break;
+
+                case this.keys.RIGHT:
+                    this.player.moveRight()
+                break;
+
+                case this.keys.DOWN:
+                    this.dice.getRollDice()
+                break;
+
+            }
+
+
+          
+        });
+      
+    }
+    
+    */
+
+
+
+}      
 
     
 
-}
