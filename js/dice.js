@@ -1,4 +1,4 @@
-class Rolldice {
+class RollDice {
     constructor(ctx, posX, posY, width) {
         this.ctx = ctx
         this.Pos = { x: 250, y: 450 }
@@ -25,8 +25,6 @@ class Rolldice {
     }
 
 
-    //// DICE DIFICULTY
-
     getTotalRollResult() {
 
         for (let i = 0; i < this.greenDice.rollNumber; i++) {
@@ -51,12 +49,8 @@ class Rolldice {
 
     }
 
-    //// DICE TOTAL RESULT
-
 
     getFinalResult() {
-
-        this.getTotalRollResult()
 
         for (let i = 0; i < this.finalResultNumber; i++) {
             let result = Math.floor(Math.random() * this.totalRollResult.length)
@@ -68,13 +62,9 @@ class Rolldice {
 
     }
 
-    //// DICE IMAGES
     
     getDiceImage() {
 
-        this.getFinalResult() 
-
-        console.log('RESULTAOOOO:', this.finalResult)
         this.finalResult.forEach((elm) => {
             const image = new Image()
             switch (elm) {
@@ -95,30 +85,30 @@ class Rolldice {
             this.diceImages.push(image)
         })   
 
-        console.log('IMAGESSS:', this.diceImages)
-
         return this.diceImages
-
-        // this.ctx.drawImage(this.diceImages[0], 50, 50, 50, 50)
     
     }   
 
     draw() {
-        console.log('holoooo',this.diceImages)
+        
         this.ctx.drawImage(this.diceImages[0], 600, 550, 80, 80)
         this.ctx.drawImage(this.diceImages[1], 600, 650, 80, 80)
         this.ctx.drawImage(this.diceImages[2], 600, 750, 80, 80)
-    }
-
-
-    drawAllGameCenter(){
-
-        this.getFinalResult() 
-        this.drawDicePosition()
-
 
     }
 
+    getRollDice() {
+
+        this.getTotalRollResult()
+        this.getFinalResult()
+        this.getDiceImage()
+        this.draw()
+
+    }
     
+    // crear la intancia de rolldice en un metodo createroldice y lo llamamos en init (podemos crear el createall)
+    // queremos sacar la tirada cuando el jugador le de al boton
+    // entonces el metodo que hace eso debe ser llamado en ese  momento
+    // y ahi se dibujaran los dados (que ya lo hemos hecho, se supone) y luego habra que gestionar lo que pasa segun la tirada que sale de los dados
 
 }

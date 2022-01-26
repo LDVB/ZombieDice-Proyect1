@@ -18,13 +18,26 @@ class Player {
 
     }
     moveLeft() {
+        this.playerPos.x -= 2
+    }
 
-        this.PlayerPos.x -= 50
-    }
     moveRight() {
-        
-        this.PlayerPos.x += 20
+        this.playerPos.x += 2
     }
+
+    // shoot() {
+    //     if (this.playerPos.x += 2 this.zombiePos) {
+
+    //      zombie lost lives
+
+    //     } else {
+
+    //         return fail
+
+    //     }
+
+
+    // }
 
     //faltan las vidas
 }

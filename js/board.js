@@ -8,40 +8,63 @@ const drawingApocalipsys = {
     ctx: undefined,
     player: undefined,
     zombie: undefined,
-    diceRoll: [],
+    //Rolldice: [], // antes diceRoll
+
     init(){
         this.setContext()
         this.setSize()
         this.drawBoard()
         this.createPlayer()
         this.createZombie()
+        this.rollDice = new RollDice(this.ctx) // antes diceRoll
+        //this.rollDice.getDiceImage() // antes diceRoll
+        //this.rollDice.draw() // antes diceRoll
         this.drawAll()
-        this.diceRoll = new Rolldice(this.ctx)
-        this.diceRoll.getDiceImage()
-        this.diceRoll.draw()
-        
+        this.start() 
+        this.setEventHandlers()      
 
     },
+
     setContext() {
-
         this.ctx = document.querySelector('#canvas').getContext('2d')
-
     },
-
 
     setSize(){
-
         this.gameSize = {
-
             w: 1425,
             h: 900
-            
         }
-        
         document.querySelector('#canvas').setAttribute('width', this.gameSize.w)
         document.querySelector('#canvas').setAttribute('height', this.gameSize.h)
+    },
+
+    start(){
+        setInterval (() => {
+            
+            this.clearScreen()
+            this.drawAll() 
+            
+        },70)
+    },
+
+    ///// DRAW AND CLEAR
+
+
+    drawAll (){
+
+        this.drawBoard()
+        this.player.draw()
+        this.zombie.draw()
+        this.rollDice.diceImages.length === this.rollDice.finalResultNumber && this.rollDice.draw()
+        
+    },
+
+   clearScreen() {
+
+        this.ctx.clearRect(0, 0, this.gameSize.w , this.gameSize.h)
 
     },
+
 
     ///// DRAW BOARD
 
@@ -49,8 +72,8 @@ const drawingApocalipsys = {
 
         this.drawlowerBoard()
         this.drawUpperBoard()
-        this.addZombieToken()
-        this.addPlayerToken()
+        this.drawZombieToken()
+        this.drawPlayerToken()
                            
     },
 
@@ -64,37 +87,41 @@ const drawingApocalipsys = {
     drawUpperBoard(){
 
         this.ctx.fillStyle = '#B8860B'
-        this.ctx.fillRect(0, 0, this.gameSize.w , this.gameSize.h -400)
+        this.ctx.fillRect(0, 0, this.gameSize.w , this.gameSize.h - 400)
        
-
     },
 
     ///// DRAW BOARD ELEMENTS  
 
-    addZombieToken(){
-        const img = new Image()
-        img.src = "images/tokenZombie.png"
-        this.ctx.drawImage(img, 0, 0)
+    drawZombieToken(){
+        const zombieToken = new Image()
+        zombieToken.src = "images/tokenZombie-PhotoRoom.png"
+        this.ctx.drawImage(zombieToken, 300, 0, 200, 200)
+        
+    },
+
+    drawPlayerToken(){
+
+        const playerToken = new Image()
+        playerToken.src = "images/tokenPlayer-PhotoRoom.png"
+        this.ctx.drawImage (playerToken,0, 300, 200, 200)
+        
 
     },
 
-    addPlayerToken(){
+    drawComandImage(){
 
-
-
-    },
-
-    addComandImage(){
-
+        const comandImage = new Image()
+        comandImage.src = "images/controles.png"
+        comandImage.onload = () => this.ctx.drawImage(comandImage, 0, 0, 200, 200)
 
     },
 
     ///// DRAW PLAYERS AND VILLAINS
 
-
     createPlayer(){
 
-        this.player = new Player (this.ctx, 100, 100, 100, 100)
+        this.player = new Player (this.ctx, 100, 100, 100)
 
     },
 
@@ -104,24 +131,6 @@ const drawingApocalipsys = {
 
     },
 
-
-    ///// DRAW AND CLEAR
-
-
-    drawAll (){
-
-        this.ctx.clearRect(0, 0,this.gameSize.w, this.gameSize.h) 
-        this.drawBoard()
-        this.player.draw()
-        this.zombie.draw()
-
-   },
-
-   clearScreen() {
-
-        this.ctx.clearRect(0, 0 , this.gameSize.w, this.gameSize.h)
-
-   },
 
 
     //// CONTROL GAME    
@@ -150,11 +159,21 @@ const drawingApocalipsys = {
             }
         })
 
-    }
+    },
 
 
-   ///// MOVEMENT KEYBOARD      
+   ///// MOVEMENT KEYBOARD    
 
+   setEventHandlers() {
+    document.addEventListener('keydown', event => {
+        const { key } = event
+        key === 'ArrowRight' ? this.player.moveRight() : null
+        key === 'ArrowUp' ? this.dice.moveLeft() : null
+        key === 'ArrowDown' ? this.rollDice.moveRight() : null
+        key === 'ArrowLeft' ? this.player.moveLeft() : null
+    })
+
+}
 
     
 
