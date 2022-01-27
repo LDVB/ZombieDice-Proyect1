@@ -12,10 +12,13 @@ const drawingApocalipsys = {
     canWalk: false,
     canShoot: false,
     hasDoneAction: false,
+    playerPos: undefined,
+    ZombiePos: undefined,
     
 
 
     init(){
+        
         this.setContext()
         this.setSize()
         this.drawBoard()
@@ -23,9 +26,7 @@ const drawingApocalipsys = {
         this.drawAll()
         this.start() 
         this.setEventHandlers()    
-        // this.generateActions()  
-        // this.controlGameActions()
-
+        
     },
 
     setContext() {
@@ -88,20 +89,24 @@ const drawingApocalipsys = {
         this.drawZombieToken()
         this.drawPlayerToken()
         this.drawComandImage()
+        this.drawBrainImage()
+        this.drawHeartImage()
+
                            
     },
 
     drawlowerBoard() {
 
-        this.ctx.fillStyle = '#ccc1c1'
+        this.ctx.fillStyle = '#98949a'
         this.ctx.fillRect(0, 500, this.gameSize.w , this.gameSize.h)
        
     },
 
     drawUpperBoard(){
 
-        this.ctx.fillStyle = '#B8860B'
-        this.ctx.fillRect(0, 0, this.gameSize.w , this.gameSize.h - 400)
+        const fondoApocalipsis = new Image()
+        fondoApocalipsis.src = 'images/fondo-apocalipsis.jpg'
+        this.ctx.drawImage(fondoApocalipsis, 0, 0, 1500, 500)
        
     },
 
@@ -150,6 +155,25 @@ const drawingApocalipsys = {
         this.zombie = new Zombie (this.ctx, 100, 100, 100, 100)
 
     },
+
+    drawBrainImage() {
+        const brainImage = new Image()
+        brainImage.src = 'images/brain.png'
+        this.ctx.drawImage(brainImage, -5, 508, 140, 80)
+        this.ctx.drawImage(brainImage, 150, 508, 140, 80)
+        this.ctx.drawImage(brainImage, 300, 508, 140, 80)
+    },
+
+
+    drawHeartImage() {
+            const heartImage = new Image()
+            heartImage.src = 'images/heart.png'
+            this.ctx.drawImage(heartImage, 990, 500, 90, 90)
+            this.ctx.drawImage(heartImage, 1070, 500, 90, 90)
+            this.ctx.drawImage(heartImage, 1150, 500, 90, 90)
+            this.ctx.drawImage(heartImage, 1240, 500, 90, 90)
+            this.ctx.drawImage(heartImage, 1330, 500, 90, 90)
+    },
    
     //// CONTROL GAME    
 
@@ -161,7 +185,7 @@ const drawingApocalipsys = {
             key === 'ArrowRight' && this.canWalk ? this.player.moveRight(): null
             key === 'ArrowDown' && this.canRoll ? this.rollDice.getRollDice(): null 
             key === 'ArrowLeft' && this.canWalk ? this.player.moveLeft() : null
-            key === 'ArrowUp'&& this.canShoot ? this.player.moveShoot() : null
+            key === 'ArrowUp'&& this.canShoot ? this.player.shoot() : null
         })
     
     },  
@@ -186,68 +210,36 @@ const drawingApocalipsys = {
                         case "pasos":
                             if (!this.hasDoneAction) {
                                 this.canWalk = true
-                                console.log('pasooos sinhaber hecho la accioón');
-                            }
-                            else {
-                                console.log('pasooos con la accioón hcha');
+                                
+                            } else {
                                 this.goToNextAction(arr, elm, idx)
                             }
                             break;
-        
                         case "mordisco":
-                            console.log('mordiscoooo')
-                            // if (posPlayer - posZombie < 2 ) {
-                            // this.player.live -- 
-                            // } else {
-                            //     return null
-                            // }
+                            if (!this.hasDoneAction) {
+                                this.zombie.bite()
+                                console.log ("player lost lives")
+                            } else {
+                                this.goToNextAction(arr, elm, idx)
+                            }
                             break;
-        
                         case "disparo":
-                            console.log('disparooooo')
-
-                            // this.canShoot = true
-                            // if (posPlayer - posZombie < 3 ) {
-                            // this.Zombie.live -- 
-                            // } else {
-                            //     return null
-                            // }   
-                            break;
-        
+                            if (!this.hasDoneAction) {
+                                this.canShoot = true
+                                console.log ("zombie lost lives")
+                            } else {
+                                this.goToNextAction(arr, elm, idx)
+                            }
+                            break; 
                         default:
                             console.log('Action not managed')
                     }
-        
-                    // this.canWalk = false
-                    // this.canShoot = false
 
                 }
             })
-    
-            // this.canRoll = true
-
         }
         
     },
 
 
-   ///// MOVEMENT KEYBOARD  
-
-   /*
-   setEventHandlers() {
-
-      
-
-          document.addEventListener('keydown', event => {
-                const { key } = event
-                key === 'ArrowRight' ? this.controlGameActions('right'): null
-                key === 'ArrowDown' && this.canRoll ? this.rollDice.getRollDice(): null /// no puedes darle dos veces seguidas
-                key === 'ArrowLeft'  ? this.controlGameActions('left') : null
-                key === 'ArrowUp' ? this.controlGameActions('shoot') : null
-        })
-    
-
-
-    }    
-    */
 }

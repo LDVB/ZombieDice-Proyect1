@@ -15,7 +15,7 @@ class Player {
     }
 
     draw() {
-
+        
         this.ctx.fillStyle = 'red'
         this.ctx.fillRect(this.playerPos.x, this.playerPos.y, 100, 100)
 
@@ -43,28 +43,17 @@ class Player {
 
     }
 
-    moveShoot(){
-
-        this.zombie.lives --
-
-    }
     
-    lives (){
 
-        this.lives -= this.zombie.bites
+    shoot(){
+        
+        drawingApocalipsys.zombie.lives--
+        drawingApocalipsys.canShoot = false
+        drawingApocalipsys.hasDoneAction = true
 
     }
 
-    createHeartImage() {
-        const heartImage = new Image()
-        heartImage.src = "images/heart.png"
-        this.ctx.drawImage(heartImage, 990, 500, 90, 90)
-        this.ctx.drawImage(heartImage, 1070, 500, 90, 90)
-        this.ctx.drawImage(heartImage, 1150, 500, 90, 90)
-        this.ctx.drawImage(heartImage, 1240, 500, 90, 90)
-        this.ctx.drawImage(heartImage, 1330, 500, 90, 90)
-    }
-
+    
 
 
 }

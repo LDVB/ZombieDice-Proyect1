@@ -4,7 +4,6 @@ class Zombie {
         this.Pos = { x: 250, y: 450 }
         this.Size = { w: width * 20, h: width * .50 }
         this.Image = undefined
-        this.bites = undefined
         this.lives = 3
         this.init()
     }
@@ -13,28 +12,19 @@ class Zombie {
     }
 
     draw() {
-        this.ctx.fillStyle = 'green'
-        this.ctx.fillRect(0, 400, 100, 100)
+        const zombiePlayer = new Image()
+        zombiePlayer.src = 'images/zombie.png'
+        this.ctx.drawImage(zombiePlayer, 0, 283, 200, 225)
     }
 
-    moves () {
+    
 
+    bite() {
+        drawingApocalipsys.player.lives--
+        drawingApocalipsys.hasDoneAction = true
+    }
+
+    
         
-    }
-    /*
-    *****bites () {
-
-        player.lives --
-
-    }
-    */
-
-    createBrainImage() {
-        const brainImage = new Image()
-        brainImage.src = "images/brain.png"
-        this.ctx.drawImage(brainImage, -5, 508, 140, 80)
-        this.ctx.drawImage(brainImage, 150, 508, 140, 80)
-        this.ctx.drawImage(brainImage, 300, 508, 140, 80)
-    }
-
+ 
 }

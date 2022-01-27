@@ -30,7 +30,6 @@ class RollDice {
         this.diceImages = []
         this.finalArray = []
         drawingApocalipsys.canRoll = true
-        console.log('HE BOORADO TODO BITHCESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
     }
 
 
