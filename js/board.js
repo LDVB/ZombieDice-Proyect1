@@ -59,6 +59,8 @@ const drawingApocalipsys = {
         this.createPlayer()
         this.createZombie()
         this.createRollDice()
+        //this.createBrainImage()
+       // this.createHeartImage()
         
 
     },
@@ -89,10 +91,7 @@ const drawingApocalipsys = {
         this.drawZombieToken()
         this.drawPlayerToken()
         this.drawComandImage()
-        this.drawBrainImage()
-        this.drawHeartImage()
-
-                           
+                                  
     },
 
     drawlowerBoard() {
@@ -156,24 +155,14 @@ const drawingApocalipsys = {
 
     },
 
-    drawBrainImage() {
-        const brainImage = new Image()
-        brainImage.src = 'images/brain.png'
-        this.ctx.drawImage(brainImage, -5, 508, 140, 80)
-        this.ctx.drawImage(brainImage, 150, 508, 140, 80)
-        this.ctx.drawImage(brainImage, 300, 508, 140, 80)
-    },
+    
 
+   /* createBrainImage() {
 
-    drawHeartImage() {
-            const heartImage = new Image()
-            heartImage.src = 'images/heart.png'
-            this.ctx.drawImage(heartImage, 990, 500, 90, 90)
-            this.ctx.drawImage(heartImage, 1070, 500, 90, 90)
-            this.ctx.drawImage(heartImage, 1150, 500, 90, 90)
-            this.ctx.drawImage(heartImage, 1240, 500, 90, 90)
-            this.ctx.drawImage(heartImage, 1330, 500, 90, 90)
-    },
+        this.brainImage = new brainImage (this.ctx)
+
+    },*/
+   
    
     //// CONTROL GAME    
 
@@ -238,6 +227,7 @@ const drawingApocalipsys = {
                 }
             })
         }
+        this.drawAll()
         
     },
 
