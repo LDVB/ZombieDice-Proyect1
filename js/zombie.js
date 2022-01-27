@@ -24,7 +24,7 @@ class Zombie {
         drawingApocalipsys.hasDoneAction = true
     }
 
-    
+
         
  
 }

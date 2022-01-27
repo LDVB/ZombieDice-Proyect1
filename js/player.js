@@ -1,23 +1,32 @@
 class Player {
     constructor(ctx, posX, posY, width) {
         this.ctx = ctx
-        this.playerPos = { x: 200, y: 400 }
+        this.playerPos = { x: 320, y: 250 }
         this.Size = { w: width * 20, h: width * .50 }
-        this.Image = undefined
+        this.imageInstance = undefined
         this.lives = 5
         this.init()
     }
 
     init() {
-
+        this.playerImage = new Image()
+        this.playerImage.src = "images/survivor.png"
 
 
     }
 
     draw() {
         
-        this.ctx.fillStyle = 'red'
-        this.ctx.fillRect(this.playerPos.x, this.playerPos.y, 100, 100)
+        /*
+        const survivalPlayer = new Image()
+     
+
+        */
+       
+        this.ctx.drawImage(this.playerImage, this.playerPos.x, this.playerPos.y, 190, 250)
+        //this.ctx.drawImage('images/survivor.png', this.playerPos.x, this.playerPos.y, 100, 100)
+        //this.ctx.drawImage(this.carImage, this.carPos.x, this.carPos.y, this.carSize.w, this.carSize.h)
+
 
     }
 
@@ -51,9 +60,7 @@ class Player {
         drawingApocalipsys.canShoot = false
         drawingApocalipsys.hasDoneAction = true
 
-    }
-
-    
+    }  
 
 
 }
