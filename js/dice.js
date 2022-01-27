@@ -20,7 +20,17 @@ class RollDice {
         this.totalRollResult = []
         this.finalResult = []
         this.diceImages = []
+        this.finalArray = []
 
+    }
+
+    emptyAllResults() {
+        this.totalRollResult = []
+        this.finalResult = []
+        this.diceImages = []
+        this.finalArray = []
+        drawingApocalipsys.canRoll = true
+        console.log('HE BOORADO TODO BITHCESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
     }
 
 
@@ -61,6 +71,12 @@ class RollDice {
             this.finalResult.push(chosen)
         }
 
+        this.finalArray = [
+            {action: this.finalResult[0], canExecute: true},
+            {action: this.finalResult[1], canExecute: false},
+            {action: this.finalResult[2], canExecute: false}
+        ]
+  
         return this.finalResult
 
     }
@@ -96,9 +112,9 @@ class RollDice {
 
     draw() {
         
-        this.ctx.drawImage(this.diceImages[0], 600, 550, 80, 80)
-        this.ctx.drawImage(this.diceImages[1], 600, 650, 80, 80)
-        this.ctx.drawImage(this.diceImages[2], 600, 750, 80, 80)
+        this.ctx.drawImage(this.diceImages[0], 500, 550, 80, 80)
+        this.ctx.drawImage(this.diceImages[1], 500, 650, 80, 80)
+        this.ctx.drawImage(this.diceImages[2], 500, 750, 80, 80)
 
     }
 
@@ -108,16 +124,10 @@ class RollDice {
         this.getFinalResult()
         this.getDiceImage()
         this.draw()
+        drawingApocalipsys.controlGameActions(this.finalResult)
 
     }
 
 
     
-
-    
-    // :) crear la intancia de rolldice en un metodo createroldice y lo llamamos en init (podemos crear el createall)
-    // :) queremos sacar la tirada cuando el jugador le de al boton
-    // :) entonces el metodo que hace eso debe ser llamado en ese  momento
-    // :) y ahi se dibujaran los dados (que ya lo hemos hecho, se supone) y luego habra que gestionar lo que pasa segun la tirada que sale de los dados
-
 }

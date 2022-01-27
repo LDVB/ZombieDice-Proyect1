@@ -8,13 +8,12 @@ const drawingApocalipsys = {
     ctx: undefined,
     player: undefined,
     zombie: undefined,
-        /*
-    keys: {
-        UP: 38,
-        DOWN: 40,
-        LEFT: 37,
-        RIGHT: 39
-    },*/
+    canRoll: true,
+    canWalk: false,
+    canShoot: false,
+    hasDoneAction: false,
+    
+
 
     init(){
         this.setContext()
@@ -23,7 +22,9 @@ const drawingApocalipsys = {
         this.createAll()
         this.drawAll()
         this.start() 
-        this.setEventHandlers()      
+        this.setEventHandlers()    
+        // this.generateActions()  
+        // this.controlGameActions()
 
     },
 
@@ -45,6 +46,7 @@ const drawingApocalipsys = {
             
             this.clearScreen()
             this.drawAll() 
+            this.controlGameActions(this.rollDice.finalArray)
             
         },70)
     },
@@ -56,6 +58,7 @@ const drawingApocalipsys = {
         this.createPlayer()
         this.createZombie()
         this.createRollDice()
+        
 
     },
 
@@ -65,6 +68,7 @@ const drawingApocalipsys = {
         this.player.draw()
         this.zombie.draw()
         this.rollDice.diceImages.length === this.rollDice.finalResultNumber && this.rollDice.draw()
+        
         
     },
 
@@ -89,7 +93,7 @@ const drawingApocalipsys = {
 
     drawlowerBoard() {
 
-        this.ctx.fillStyle = '#504949'
+        this.ctx.fillStyle = '#ccc1c1'
         this.ctx.fillRect(0, 500, this.gameSize.w , this.gameSize.h)
        
     },
@@ -106,7 +110,7 @@ const drawingApocalipsys = {
     drawZombieToken(){
         const zombieToken = new Image()
         zombieToken.src = "images/tokenZombie-PhotoRoom.png"
-        this.ctx.drawImage(zombieToken, 10, 530, 300, 300)
+        this.ctx.drawImage(zombieToken, 10, 580, 300, 300)
         
     },
 
@@ -114,7 +118,7 @@ const drawingApocalipsys = {
 
         const playerToken = new Image()
         playerToken.src = "images/tokenPlayer-PhotoRoom.png"
-        this.ctx.drawImage (playerToken,1090, 560, 360, 360)
+        this.ctx.drawImage (playerToken,1090, 540, 360, 360)
         
 
     },
@@ -123,7 +127,7 @@ const drawingApocalipsys = {
 
         const comandImage = new Image()
         comandImage.src = "images/controles.png"
-        this.ctx.drawImage(comandImage, 760, 555, 270, 270)
+        this.ctx.drawImage(comandImage, 600, 535, 350, 350)
 
     },
 
@@ -146,81 +150,104 @@ const drawingApocalipsys = {
         this.zombie = new Zombie (this.ctx, 100, 100, 100, 100)
 
     },
-
    
     //// CONTROL GAME    
 
-    controlGameActions(actionsArray) {
 
-     actionsArray.forEach((action) => {
-         switch (action) {
-             case action === "pasos":
-                 this.player
-                 //acciones player se mueve/zombie avanza hacia el jugador
-                 this.
-                 break;
+    setEventHandlers() {
 
-             case diceRoll.includes ("mordisco"):
-                 //acciones Player pierde una vida si esta cerca del zombie (distancia de dos pasos)
-                 //imagen de dado mostrada en pantalla   
-                 break;
-
-             case diceRoll.includes ("disparo"):
-                 //acciones zombie pierde una vida si está cerca del player (distancia de tres pasos)
-                 //imagen de dado mostrada en pantalla
-                 break;
-             default:
-                console.log('Action not managed')
-            }
+        document.addEventListener('keydown', event => {
+            const { key } = event
+            key === 'ArrowRight' && this.canWalk ? this.player.moveRight(): null
+            key === 'ArrowDown' && this.canRoll ? this.rollDice.getRollDice(): null 
+            key === 'ArrowLeft' && this.canWalk ? this.player.moveLeft() : null
+            key === 'ArrowUp'&& this.canShoot ? this.player.moveShoot() : null
         })
+    
+    },  
 
+    goToNextAction(arr, elm, idx) {
+        elm.canExecute = false
+        this.hasDoneAction = false
+        if (idx < arr.length - 1) arr[idx + 1].canExecute = true
+        else if (idx === arr.length - 1) this.rollDice.emptyAllResults()
+    },
+    
+    controlGameActions(arr) {
+        
+        if (arr.length === 3) {
+
+            this.canRoll = false
+    
+            arr.forEach((elm, idx) => {
+                if (elm.canExecute) {
+
+                    switch (elm.action) {
+                        case "pasos":
+                            if (!this.hasDoneAction) {
+                                this.canWalk = true
+                                console.log('pasooos sinhaber hecho la accioón');
+                            }
+                            else {
+                                console.log('pasooos con la accioón hcha');
+                                this.goToNextAction(arr, elm, idx)
+                            }
+                            break;
+        
+                        case "mordisco":
+                            console.log('mordiscoooo')
+                            // if (posPlayer - posZombie < 2 ) {
+                            // this.player.live -- 
+                            // } else {
+                            //     return null
+                            // }
+                            break;
+        
+                        case "disparo":
+                            console.log('disparooooo')
+
+                            // this.canShoot = true
+                            // if (posPlayer - posZombie < 3 ) {
+                            // this.Zombie.live -- 
+                            // } else {
+                            //     return null
+                            // }   
+                            break;
+        
+                        default:
+                            console.log('Action not managed')
+                    }
+        
+                    // this.canWalk = false
+                    // this.canShoot = false
+
+                }
+            })
+    
+            // this.canRoll = true
+
+        }
+        
     },
 
 
    ///// MOVEMENT KEYBOARD  
 
+   /*
    setEventHandlers() {
 
-        document.addEventListener('keydown', event => {
-            const { key } = event
-            key === 'ArrowRight' ? this.player.moveRight(): null
-            key === 'ArrowDown' ? this.rollDice.getRollDice(): null
-            key === 'ArrowLeft' ? this.player.moveLeft() : null
-        })
-    }    
-
-    /*
-    setEventHandlers() {
-
-        document.addEventListener ('keydown', event => {
-    
-            switch (event) {
-
-                case this.keys.LEFT:
-                    this.player.moveLeft()            
-                break;
-
-                case this.keys.RIGHT:
-                    this.player.moveRight()
-                break;
-
-                case this.keys.DOWN:
-                    this.dice.getRollDice()
-                break;
-
-            }
-
-
-          
-        });
       
-    }
+
+          document.addEventListener('keydown', event => {
+                const { key } = event
+                key === 'ArrowRight' ? this.controlGameActions('right'): null
+                key === 'ArrowDown' && this.canRoll ? this.rollDice.getRollDice(): null /// no puedes darle dos veces seguidas
+                key === 'ArrowLeft'  ? this.controlGameActions('left') : null
+                key === 'ArrowUp' ? this.controlGameActions('shoot') : null
+        })
     
+
+
+    }    
     */
-
-
-
-}      
-
-    
-
+}
