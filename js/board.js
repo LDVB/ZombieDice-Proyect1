@@ -58,10 +58,7 @@ const drawingApocalipsys = {
 
         this.createPlayer()
         this.createZombie()
-        this.createRollDice()
-        //this.createBrainImage()
-       // this.createHeartImage()
-        
+        this.createRollDice()       
 
     },
 
@@ -71,7 +68,6 @@ const drawingApocalipsys = {
         this.player.draw()
         this.zombie.draw()
         this.rollDice.diceImages.length === this.rollDice.finalResultNumber && this.rollDice.draw()
-        
         
     },
 
@@ -112,6 +108,7 @@ const drawingApocalipsys = {
     ///// BOARD ELEMENTS  
 
     drawZombieToken(){
+
         const zombieToken = new Image()
         zombieToken.src = "images/tokenZombie-PhotoRoom.png"
         this.ctx.drawImage(zombieToken, 10, 580, 300, 300)
@@ -154,18 +151,8 @@ const drawingApocalipsys = {
         this.zombie = new Zombie (this.ctx, 100, 100, 100, 100)
 
     },
-
-    
-
-   /* createBrainImage() {
-
-        this.brainImage = new brainImage (this.ctx)
-
-    },*/
-   
-   
+  
     //// CONTROL GAME    
-
 
     setEventHandlers() {
 
