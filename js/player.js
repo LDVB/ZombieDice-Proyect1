@@ -56,6 +56,8 @@ class Player {
 
     }
 
+    
+
     moveRight() {
 
         this.playerPos.x += 100
@@ -74,6 +76,7 @@ class Player {
         drawingApocalipsys.hasDoneAction = true
 
     }  
+
     
     
 

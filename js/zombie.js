@@ -43,10 +43,9 @@ class Zombie {
     }
 
 
-    
-
     bite() {
         drawingApocalipsys.player.lives-- 
+    
         drawingApocalipsys.hasDoneAction = true
     }
 

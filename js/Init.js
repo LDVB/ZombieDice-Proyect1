@@ -1,11 +1,6 @@
 window.onload = () => {
 document.getElementById('start-button').onclick = () => {
-   startGame();
+    drawingApocalipsys.init();
   };
 
-  function startGame() {
-
-    drawingApocalipsys.init()
-
-  }
 };
