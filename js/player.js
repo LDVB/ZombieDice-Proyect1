@@ -74,7 +74,8 @@ class Player {
         drawingApocalipsys.hasDoneAction = true
 
     }  
-
+    
+    
 
 
 
