@@ -4,7 +4,7 @@ class Zombie {
         this.zombiePos = { x: 0, y: 225 }
         this.Size = { w: width * 20, h: width * .50 }
         this.Image = undefined
-        this.lives = 3 4
+        this.lives = 3 
         this.brain = undefined
         this.init()
     }
